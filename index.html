@@ -195,8 +195,8 @@
 				controller = renderer.xr.getController( 0 );
 				// // コード内で作成した3Dモデルを表示
 				// controller.addEventListener( 'select', onSelect );
-				// // コード内で作成した3Dモデルを表示
-				// controller.addEventListener( 'select', loadModel);
+				// コード内で作成した3Dモデルを表示
+				controller.addEventListener( 'select', loadModel);
 				
 				scene.add( controller );
 
