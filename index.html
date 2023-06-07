@@ -162,6 +162,34 @@
 
 				}
 
+
+				// 追加
+				// GLTFファイルを使用
+				loader.load(
+					'cube_small.glb',
+					function (gltf) {
+						const model = gltf.scene;
+						const position = new THREE.Vector3();
+						const quaternion = new THREE.Quaternion();
+						const scale = new THREE.Vector3();
+						reticle.matrix.decompose(position, quaternion, scale);
+						model.position.copy(position);
+						model.quaternion.copy(quaternion);
+						model.scale.copy(scale);
+						scene.add(model);
+					},
+					function (xhr) {
+						console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+					},
+					function (error) {
+						console.error('An error happened', error);
+					}
+				);
+
+
+
+
+
 				controller = renderer.xr.getController( 0 );
 				// // コード内で作成した3Dモデルを表示
 				// controller.addEventListener( 'select', onSelect );
@@ -193,31 +221,6 @@
 
 
 			
-
-			const loader = new GLTFLoader();
-
-			loader.load(
-				'cube_small.glb',
-				function (gltf) {
-					const model = gltf.scene;
-					const position = new THREE.Vector3();
-					const quaternion = new THREE.Quaternion();
-					const scale = new THREE.Vector3();
-					reticle.matrix.decompose(position, quaternion, scale);
-					model.position.copy(position);
-					model.quaternion.copy(quaternion);
-					model.scale.copy(scale);
-					scene.add(model);
-				},
-				function (xhr) {
-					console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
-				},
-				function (error) {
-					console.error('An error happened', error);
-				}
-			);
-
-
 
 
 			// // // 追加
