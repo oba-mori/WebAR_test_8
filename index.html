@@ -163,7 +163,10 @@
 				}
 
 				controller = renderer.xr.getController( 0 );
-				controller.addEventListener( 'select', onSelect );
+				// // コード内で作成した3Dモデルを表示
+				// controller.addEventListener( 'select', onSelect );
+				// コード内で作成した3Dモデルを表示
+				controller.addEventListener( 'select', load);
 				scene.add( controller );
 
 				reticle = new THREE.Mesh(
@@ -180,28 +183,47 @@
 
 				// 追加
 				// GLTFファイル使用関数呼び出し
-				loadModel();
+				// loadModel();
 			}
 
-			// 追加
-			// GLTFファイルを使用
-			function loadModel() {
-				const loader = new GLTFLoader();
 
-				loader.load(
-					'cube_small.glb', // モデルのファイルパスを指定する
-					function (gltf) {
-						const model = gltf.scene;
-						scene.add(model);
-					},
-					function (xhr) {
-						console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
-					},
-					function (error) {
-						console.error('An error happened', error);
-					}
-				);
-			}
+			// // 追加
+			// // GLTFファイルを使用
+			loader.load(
+				'cube_small.glb', // モデルのファイルパスを指定する
+				function (gltf) {
+					const model = gltf.scene;
+					scene.add(model);
+				},
+				function (xhr) {
+					console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+				},
+				function (error) {
+					console.error('An error happened', error);
+				}
+			);
+
+
+
+			// // 追加
+			// // GLTFファイルを使用
+			// function loadModel() {
+			// 	const loader = new GLTFLoader();
+
+			// 	loader.load(
+			// 		'cube_small.glb', // モデルのファイルパスを指定する
+			// 		function (gltf) {
+			// 			const model = gltf.scene;
+			// 			scene.add(model);
+			// 		},
+			// 		function (xhr) {
+			// 			console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+			// 		},
+			// 		function (error) {
+			// 			console.error('An error happened', error);
+			// 		}
+			// 	);
+			// }
 
 
 
